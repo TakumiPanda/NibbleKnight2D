@@ -6,17 +6,21 @@ TagManager:
   tags:
   - Anchor
   - Object
+  - Coin
+  - Ground
+  - WaterHazard
+  - FriendlyNPC
+  - EnemyNPC
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
   - Grabable
   - Ground
-  - 
+  - Wall
   - 
   - 
   - 
