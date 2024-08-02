@@ -33,7 +33,7 @@ public class SwissHealthScript : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision Other)
+    void OnCollisionEnter2D(Collision2D Other)
     {
         if(Other.gameObject.CompareTag("EnemyNPC"))
         {

@@ -23,7 +23,7 @@ public class SwissInventoryScript : MonoBehaviour
         m_NumOfCoinsText.text = coinsCollected.ToString();
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Coin"))
         {
