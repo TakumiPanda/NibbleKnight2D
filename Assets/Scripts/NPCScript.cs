@@ -32,20 +32,20 @@ public class NPCScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(m_TextBubble.activeInHierarchy && Input.GetKeyDown(KeyCode.Return))
-        {
-            m_TextBubble.SetActive(false);
-        }
-    }
+    // void Update()
+    // {
+    //     // if(m_TextBubble.activeInHierarchy && Input.GetKeyDown(KeyCode.Return))
+    //     // {
+    //     //     m_TextBubble.SetActive(false);
+    //     // }
+    // }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         //Player collides with NPC
         if(collision.gameObject.CompareTag("Player"))
         {
-            // Debug.Log("Player ran into NPC.");
+            Debug.Log("Player ran into NPC.");
             //Is the quest already completed.
             if(m_isFinished)
             {
@@ -86,6 +86,14 @@ public class NPCScript : MonoBehaviour
                 m_Text.text = m_TalkingDialog;
                 return;
             }
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if(m_TextBubble.activeInHierarchy)
+        {
+            m_TextBubble.SetActive(false);
         }
     }
     

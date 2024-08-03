@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GrappleHook : MonoBehaviour
 {
+
+    public GameObject m_Options;
+    public GameObject m_PauseMenuUI;
     public Transform playerPos;
     public GameObject Hook;
     private GameObject _Hook, currentOb;
@@ -34,8 +37,9 @@ public class GrappleHook : MonoBehaviour
     {
         //RaycastHit hit;
         //Ray directHit = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+        if((!m_Options.activeInHierarchy && !m_PauseMenuUI.activeInHierarchy ))
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0)) {
             mousePos = (Vector2)mainCam.ScreenToWorldPoint(Input.mousePosition);
             Collider2D col = Physics2D.OverlapCircle(mousePos, 0.3f, _grappableEnviorment);
             currentOb = col.gameObject;
@@ -47,32 +51,32 @@ public class GrappleHook : MonoBehaviour
                     Destroy(_Hook);
                 }
                 startGrapple();
-        }
-        if ((Input.GetKeyDown(KeyCode.Mouse1) || Input.GetButtonDown("Jump")) && hooked){
-            stopGrapple();
-        }
-
-
-        if (hooked) {
-            DrawRope();
-            if(Input.GetKey(KeyCode.W)) {
-                if(joint.distance > 1f)
-                    joint.distance = joint.distance - (Time.deltaTime * ropeSpeed);
             }
-            if(Input.GetKey(KeyCode.S)) {
-                if(joint.distance < RopeMaxLength)
-                    joint.distance = joint.distance + (Time.deltaTime * ropeSpeed);
+            if ((Input.GetKeyDown(KeyCode.Mouse1) || Input.GetButtonDown("Jump")) && hooked){
+                stopGrapple();
+            }
+
+
+            if (hooked) {
+                DrawRope();
+                if(Input.GetKey(KeyCode.W)) {
+                    if(joint.distance > 1f)
+                        joint.distance = joint.distance - (Time.deltaTime * ropeSpeed);
+                }
+                if(Input.GetKey(KeyCode.S)) {
+                    if(joint.distance < RopeMaxLength)
+                        joint.distance = joint.distance + (Time.deltaTime * ropeSpeed);
+                }
+            }
+            else {
+                Vector2 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+                //RotateGun(mousePos, true);
+            }
+
+            if(joint.enabled) {
+                _lineRender.SetPosition(1, transform.position);
             }
         }
-        else {
-            Vector2 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-            //RotateGun(mousePos, true);
-        }
-
-        if(joint.enabled) {
-            _lineRender.SetPosition(1, transform.position);
-        }
-
     }
 
     /**/
