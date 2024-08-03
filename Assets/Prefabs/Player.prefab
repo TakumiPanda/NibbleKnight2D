@@ -179,7 +179,7 @@ MonoBehaviour:
     m_Bits: 256
   wallLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
 --- !u!1 &4098629326335417531
 GameObject:
   m_ObjectHideFlags: 0

@@ -4872,7 +4872,7 @@ LineRenderer:
   - {x: -0.4844985, y: -2.5194016, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -5066,7 +5066,7 @@ MonoBehaviour:
   mainCam: {fileID: 1370544758}
   _lineRender: {fileID: 1167858910}
   joint: {fileID: 1167858920}
-  RopeMaxLength: 2
+  RopeMaxLength: 10
   ropeSpeed: 5
   hookSpeed: 2
   _grappableEnviorment:
@@ -6086,8 +6086,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 45
-  orthographic: 0
-  orthographic size: 3
+  orthographic: 1
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
