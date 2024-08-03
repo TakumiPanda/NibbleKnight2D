@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Anchor
+  - Object
   - Coin
   - Ground
   - WaterHazard
@@ -16,8 +18,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
-  - 
+  - Grabable
   - Ground
   - Wall
   - 
