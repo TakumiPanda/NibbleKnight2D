@@ -91,7 +91,7 @@ public class NPCScript : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D other)
     {
-        if(m_TextBubble.activeInHierarchy)
+        if(m_TextBubble != null && m_TextBubble.activeInHierarchy)
         {
             m_TextBubble.SetActive(false);
         }

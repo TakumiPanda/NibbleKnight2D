@@ -40,5 +40,11 @@ public class SwissHealthScript : MonoBehaviour
             Debug.Log("HIT!!");
             SwissDamaged(0.1F);
         }
+        else if (Other.gameObject.CompareTag("WaterHazard"))
+        {
+            Debug.Log("Fell in sewer water");
+            m_SwissCurrentHealth = 0;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }

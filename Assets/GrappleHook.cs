@@ -43,7 +43,6 @@ public class GrappleHook : MonoBehaviour
             mousePos = (Vector2)mainCam.ScreenToWorldPoint(Input.mousePosition);
             Collider2D col = Physics2D.OverlapCircle(mousePos, 0.3f, _grappableEnviorment);
             currentOb = col.gameObject;
-            
             if(currentOb != null)
                 currentAnchor = mousePos;
             //_Hook = Instantiate(Hook, playerPos.position, playerPos.rotation);
