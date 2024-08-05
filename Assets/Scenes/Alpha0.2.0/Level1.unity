@@ -2982,6 +2982,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7343045125883056486, guid: 8e778344c630b934291fe1400b176295, type: 3}
+      propertyPath: m_TagString
+      value: EnemyNPC
+      objectReference: {fileID: 0}
     - target: {fileID: 7659289736629218927, guid: 8e778344c630b934291fe1400b176295, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
@@ -8483,6 +8487,10 @@ PrefabInstance:
     - target: {fileID: 4696538718082540551, guid: 8e778344c630b934291fe1400b176295, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7343045125883056486, guid: 8e778344c630b934291fe1400b176295, type: 3}
+      propertyPath: m_TagString
+      value: EnemyNPC
       objectReference: {fileID: 0}
     - target: {fileID: 7659289736629218927, guid: 8e778344c630b934291fe1400b176295, type: 3}
       propertyPath: m_Name
