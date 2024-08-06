@@ -7549,6 +7549,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 811244832}
     m_Modifications:
+    - target: {fileID: 1421994715883496664, guid: 8e778344c630b934291fe1400b176295, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7120679228983437526, guid: 8e778344c630b934291fe1400b176295, type: 3}
       propertyPath: pointA
       value: 
@@ -11472,7 +11476,7 @@ Transform:
   m_GameObject: {fileID: 1102149286}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 57.17, y: -0.12, z: 0}
+  m_LocalPosition: {x: 57.81, y: -0.94, z: 0}
   m_LocalScale: {x: 8.3706, y: 8.3706, z: 8.3706}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14589,9 +14593,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1492365563}
   - component: {fileID: 1492365564}
+  - component: {fileID: 1492365565}
   m_Layer: 0
   m_Name: P1_WaterRiverBG
-  m_TagString: Untagged
+  m_TagString: WaterHazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14663,6 +14668,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1492365565
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492365562}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.88, y: 1.92}
+    newSize: {x: 2.88, y: 1.92}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.88, y: 1.92}
+  m_EdgeRadius: 0
 --- !u!1001 &1493898902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15737,7 +15787,7 @@ Transform:
   m_GameObject: {fileID: 1616580736}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.2356, y: 17.5139, z: 0}
+  m_LocalPosition: {x: 14.2356, y: 17.5139, z: 1}
   m_LocalScale: {x: 5.77, y: 5.76, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20773,6 +20823,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2004146087}
   - component: {fileID: 2004146088}
+  - component: {fileID: 2004146089}
   m_Layer: 0
   m_Name: P1_WaterRiverBG (1)
   m_TagString: Untagged
@@ -20847,6 +20898,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &2004146089
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004146086}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.88, y: 1.92}
+    newSize: {x: 2.88, y: 1.92}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.88, y: 1.92}
+  m_EdgeRadius: 0
 --- !u!1 &2006011348
 GameObject:
   m_ObjectHideFlags: 0
