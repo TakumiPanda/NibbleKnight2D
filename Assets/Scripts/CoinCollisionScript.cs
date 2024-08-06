@@ -16,7 +16,7 @@ public class CoinCollisionScript : MonoBehaviour
         
     // }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D other)
     {
         Debug.Log("coin picked up");
         Destroy(gameObject);
