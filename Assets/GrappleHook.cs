@@ -9,7 +9,7 @@ public class GrappleHook : MonoBehaviour
     public GameObject m_PauseMenuUI;
     public Transform playerPos;
     public GameObject Hook;
-    private GameObject _Hook, currentOb;
+    private GameObject _Hook, currentOb, newOb;
     public Rigidbody2D playerRB;
     public Camera mainCam;
     public LineRenderer _lineRender;
@@ -42,8 +42,9 @@ public class GrappleHook : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0)) {
             mousePos = (Vector2)mainCam.ScreenToWorldPoint(Input.mousePosition);
             Collider2D col = Physics2D.OverlapCircle(mousePos, 0.3f, _grappableEnviorment);
-            currentOb = col.gameObject;
-            if(currentOb != null)
+            newOb = col.gameObject;
+            if(newOb != null)
+                currentOb = newOb;
                 currentAnchor = mousePos;
             //_Hook = Instantiate(Hook, playerPos.position, playerPos.rotation);
                 if(_Hook) {
@@ -100,6 +101,23 @@ public class GrappleHook : MonoBehaviour
     void DrawRope() {
         _lineRender.SetPosition(0, mousePos);
         _lineRender.SetPosition(1, transform.position);
+    }
+
+    /**
+    void OnTriggerEnter2D(Collider2D col) {
+        // layer is grabbalbe
+            //tag is correct
+        //instance a target at ob's location
+        //add to list
+    }
+
+    void OnTriggerExit2D(Collider2D col) {
+        if ob is in the list
+        //remove colider from list
+    }
+
+    void toggleSelected() {
+        //move along the list
     }
 
     /**
