@@ -35,6 +35,16 @@ public class MainMenuButtonScript : MonoBehaviour
         m_Options.SetActive(true);
     }
 
+    public void LoadGame()
+    {
+        if(PlayerPrefs.HasKey("SaveKey"))
+        {
+            Debug.Log("Loading...");
+            PlayerPrefs.SetInt("LoadGame", 1);
+            SceneManager.LoadScene("TutorialScene");
+        }
+    }
+
     public void Credits()
     {
         Debug.Log("Credits Pressed");
