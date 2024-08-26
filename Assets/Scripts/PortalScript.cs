@@ -33,7 +33,18 @@ public class PortalScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.W) && onCollider)
         {
             Debug.Log("W pressed");
-            player.transform.position = destination.transform.position;
+            if(gameObject.tag == "PortalStandingPipe")
+            {
+                player.transform.position = new Vector3(destination.transform.position.x, destination.transform.position.y + 2, destination.transform.position.z);  
+            }
+            else if (gameObject.tag == "PortalWallDoorPipe")
+            {
+                player.transform.position = destination.transform.position;
+            }
+            else 
+            {
+                Debug.Log("Error: Portal Type doesn't exist! Please create tag and modify code as needed to work.");
+            }
         }
     } 
 
