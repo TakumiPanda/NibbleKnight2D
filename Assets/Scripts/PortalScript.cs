@@ -9,14 +9,30 @@ public class PortalScript : MonoBehaviour
     public Transform destination;
     GameObject player;
 
+    public GameObject m_Text;
+
+    private bool onCollider;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        onCollider = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+//     private void OnTriggerEnter2D(Collider2D collision)
+//     {
+//         if (collision.CompareTag("Player"))
+//         {
+//             if (Vector2.Distance(player.transform.position, transform.position) > 0.7f)
+//             {
+//                 player.transform.position = destination.transform.position;
+//             }
+//         }
+//     }
+
+    private void Update()
     {
-        if (collision.CompareTag("Player"))
+        if(Input.GetKeyDown(KeyCode.W) && onCollider)
         {
             if(!launch) {
                 if (Vector2.Distance(player.transform.position, transform.position) > 0.7f)
@@ -33,7 +49,38 @@ public class PortalScript : MonoBehaviour
                         
                     }
                 }
+            Debug.Log("W pressed");
+            if(gameObject.tag == "PortalStandingPipe")
+            {
+                player.transform.position = new Vector3(destination.transform.position.x, destination.transform.position.y + 2, destination.transform.position.z);  
             }
+            else if (gameObject.tag == "PortalWallDoorPipe")
+            {
+                player.transform.position = destination.transform.position;
+            }
+            else 
+            {
+                Debug.Log("Error: Portal Type doesn't exist! Please create tag and modify code as needed to work.");
+            }
+        }
+    } 
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("Collision Entered");
+        if(other.gameObject.CompareTag("Player"))
+        {
+            m_Text.SetActive(true);
+            onCollider = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        onCollider = false;
+        if(m_Text != null && m_Text.activeInHierarchy)
+        {
+            m_Text.SetActive(false);
         }
     }
 }

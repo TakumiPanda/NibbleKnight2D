@@ -11,6 +11,8 @@ TagManager:
   - WaterHazard
   - FriendlyNPC
   - EnemyNPC
+  - PortalStandingPipe
+  - PortalWallDoorPipe
   layers:
   - Default
   - TransparentFX
@@ -21,6 +23,7 @@ TagManager:
   - Grabable
   - Ground
   - Wall
+  - 
   - 
   - 
   - 
