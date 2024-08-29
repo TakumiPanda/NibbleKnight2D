@@ -28,7 +28,7 @@ public class GrappleHook : MonoBehaviour
 
     private class Node {
         public Node next;
-        public transform target;
+        public Transform target;
     }
 
     public class linkedList {
@@ -50,7 +50,7 @@ public class GrappleHook : MonoBehaviour
         if((!m_Options.activeInHierarchy && !m_PauseMenuUI.activeInHierarchy ))
         {
 
-            if (Input.GetKeyDown(KeyCode.Shift)) {
+            if (Input.GetKeyDown(KeyCode.LeftShift)) {
                 // moved through the list
             }
 
