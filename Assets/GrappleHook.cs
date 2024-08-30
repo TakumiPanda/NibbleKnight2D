@@ -18,22 +18,15 @@ public class GrappleHook : MonoBehaviour
     public float ropeSpeed = 5f;
     public float hookSpeed;
 
-
     public LayerMask _grappableEnviorment;
     private Vector2 mousePos, currentAnchor;
     private GameObject GrabbedObject;
-    private Node current;
+
+    [SerializeField] private Transform[] hooks;
+    private int hookCount = 0;
 
     private bool hooked = false;
 
-    private class Node {
-        public Node next;
-        public transform target;
-    }
-
-    public class linkedList {
-        private Node head;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -50,9 +43,9 @@ public class GrappleHook : MonoBehaviour
         if((!m_Options.activeInHierarchy && !m_PauseMenuUI.activeInHierarchy ))
         {
 
-            if (Input.GetKeyDown(KeyCode.Shift)) {
+            //if (Input.GetKeyDown(KeyCode.shift)) {
                 // moved through the list
-            }
+            //}
 
             if (Input.GetKeyDown(KeyCode.Mouse0)) {
             mousePos = (Vector2)mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -118,54 +111,31 @@ public class GrappleHook : MonoBehaviour
         _lineRender.SetPosition(1, transform.position);
     }
 
-    void OnTriggerEnter2D(Collider2D col) {
-        // layer is grabbalbe
-            //tag is correct
-        //instance a target at ob's location
-        //add to list
-    }
-
-    /****
-
-    void add(transform data) {
-        Node toAdd = new Node();
-        toAdd.target = data;
-        toAdd.next = head;
-        Node current = head;
-        while (current != null && current.next != head) {
-            current = current.next;
-        }
-        current.next = toAdd;
-    }
-
-    void remove(transform key) {
-        Node current = head;
-        if(current.next == null) {
-        } else while(current.next != null) {
-            if (current.next.target == key) {
-                current.next = current.next.next;
-            }
-        }
-    }
-
-    void shiftHead() {
-        if(head.next != head)
-            head = head.next;
-    }
-
-    /****/
-
     /**
-    
+
+    void OnTriggerEnter2D(Collider2D col) {
+        if(hookCount < hook.Length) {
+            hooks[hookCount] = col.transform.position;
+            hookCount++;
+        } else {
+            for(int i = 0; i < hooks.Length; i++) {
+            
+            }
+            hooks[hookCount - 1] = col.transform.position
+        }
+    }
 
     void OnTriggerExit2D(Collider2D col) {
-        if ob is in the list
-        //remove colider from list
+        int shift the arrat
+        for (int i = 0; i < hookCount; i++) {
+            if(hook[i] == col.transform.postiion) {
+            
+            }
+        }
+        hooks[hookCount] = col.transform.position;
+        hookCount--;
     }
-
-    void toggleSelected() {
-        //move along the list
-    }
+    /**/
 
     /**
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)

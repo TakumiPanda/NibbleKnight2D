@@ -49,6 +49,7 @@ public class PortalScript : MonoBehaviour
                         
                     }
                 }
+            }
             Debug.Log("W pressed");
             if(gameObject.tag == "PortalStandingPipe")
             {
