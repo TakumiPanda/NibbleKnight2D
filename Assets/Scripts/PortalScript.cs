@@ -34,22 +34,21 @@ public class PortalScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.W) && onCollider)
         {
-            if(!launch) {
-                if (Vector2.Distance(player.transform.position, transform.position) > 0.7f)
-                {
-                    player.transform.position = destination.transform.position;
-                    // player.velocity = new Vector2(player.velocity.x ,launch_Velocity);
-                    // have the player launch out of the pipe at a high speed
-                }
-            } else {
-                if(Input.GetKeyDown(KeyCode.E)) {
-                    if (Vector2.Distance(player.transform.position, transform.position) > 0.7f)
-                    {
-                        player.transform.position = destination.transform.position;
-                        
-                    }
-                }
-            }
+            // if(!launch) {
+            //     if (Vector2.Distance(player.transform.position, transform.position) > 0.7f)
+            //     {
+            //         player.transform.position = destination.transform.position;
+            //         // player.velocity = new Vector2(player.velocity.x ,launch_Velocity);
+            //         // have the player launch out of the pipe at a high speed
+            //     }
+            // } else {
+            //     if(Input.GetKeyDown(KeyCode.E)) {
+            //         if (Vector2.Distance(player.transform.position, transform.position) > 0.7f)
+            //         {
+            //             player.transform.position = destination.transform.position;
+            //         }
+            //     }
+            // }
             Debug.Log("W pressed");
             if(gameObject.tag == "PortalStandingPipe")
             {

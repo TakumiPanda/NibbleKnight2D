@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SaveAndLoadScript : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class SaveAndLoadScript : MonoBehaviour
 
     private bool onCollider;
 
-    private bool alreadySave;
+    private bool actionDone;
 
 
     // Start is called before the first frame update
@@ -23,14 +24,16 @@ public class SaveAndLoadScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1) && onCollider && !alreadySave)
+        if(Input.GetKeyDown(KeyCode.Alpha1) && onCollider && !actionDone)
         {
             SaveGame();
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2) && onCollider)
+        if(Input.GetKeyDown(KeyCode.Alpha2) && onCollider && !actionDone)
         {
             PlayerPrefs.DeleteKey("SaveKey");
             Debug.Log("2 Pressed, Key is deleted!");
+            m_Text.GetComponent<TMP_Text>().text = "Save Data Deleted!";
+            actionDone = true;
         }
         if(Input.GetKeyDown(KeyCode.Alpha3) && onCollider)
         {
@@ -48,7 +51,8 @@ public class SaveAndLoadScript : MonoBehaviour
         health %
         */
         PlayerPrefs.SetString("SaveKey","1");
-        alreadySave = true;
+        m_Text.GetComponent<TMP_Text>().text = "Data Saved";
+        actionDone = true;
     }
 
     // public void CreatingDataString()
@@ -62,8 +66,9 @@ public class SaveAndLoadScript : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             m_Text.SetActive(true);
+            m_Text.GetComponent<TMP_Text>().text = "Press 1 to enter save\nPress 2 to delete save\nPress 3 to check status of save";
             onCollider = true;
-            alreadySave = false;
+            actionDone = false;
         }
     }
 
@@ -73,7 +78,7 @@ public class SaveAndLoadScript : MonoBehaviour
         if(m_Text != null && m_Text.activeInHierarchy)
         {
             m_Text.SetActive(false);
-            alreadySave = false;
+            actionDone = false;
         }
     }
 }

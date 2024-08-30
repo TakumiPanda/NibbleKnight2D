@@ -24,7 +24,7 @@ public class GrappleHook : MonoBehaviour
 
     [SerializeField] private Transform[] hooks;
     private int hookCount = 0;
-
+    
     private bool hooked = false;
 
 
