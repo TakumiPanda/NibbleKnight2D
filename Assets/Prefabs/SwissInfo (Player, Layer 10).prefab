@@ -333,6 +333,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpPower: 15
+  coyoteTime: 0
+  wallJumpx: 0
+  wallJumpy: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -414,7 +417,7 @@ Transform:
   m_GameObject: {fileID: 474827299894868451}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.4597085, y: 2.042519, z: -10}
+  m_LocalPosition: {x: 7.09, y: 3.25, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -455,7 +458,7 @@ Camera:
   far clip plane: 1000
   field of view: 45
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

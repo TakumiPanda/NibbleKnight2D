@@ -46,7 +46,6 @@ public class PortalScript : MonoBehaviour
             //         if (Vector2.Distance(player.transform.position, transform.position) > 0.7f)
             //         {
             //             player.transform.position = destination.transform.position;
-                        
             //         }
             //     }
             // }
