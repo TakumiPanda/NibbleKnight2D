@@ -23,13 +23,13 @@ public class MainMenuButtonScript : MonoBehaviour
 
     public void StartGame()
     {
-        Debug.Log("Game Starting");
-        SceneManager.LoadScene("TutorialScene");
+        // Debug.Log("Game Starting");
+        SceneManager.LoadScene("MainGame");
     }
 
     public void Options()
     {
-        Debug.Log("Options Pressed");
+        // Debug.Log("Options Pressed");
         PlayerPrefs.SetFloat("prevMusicVolume", m_BackgroundMusicAudioSource.volume);
         m_MainMenuButtonScript.SetActive(false);
         m_Options.SetActive(true);
@@ -39,21 +39,21 @@ public class MainMenuButtonScript : MonoBehaviour
     {
         if(PlayerPrefs.HasKey("SaveKey"))
         {
-            Debug.Log("Loading...");
+            // Debug.Log("Loading...");
             PlayerPrefs.SetInt("LoadGame", 1);
-            SceneManager.LoadScene("TutorialScene");
+            SceneManager.LoadScene("MainGame");
         }
     }
 
     public void Credits()
     {
-        Debug.Log("Credits Pressed");
+        // Debug.Log("Credits Pressed");
         SceneManager.LoadScene("CreditsScene");
     }
 
     public void Exit()
     {
-        Debug.Log("Exit Pressed");
+        // Debug.Log("Exit Pressed");
         m_MainMenuButtonScript.SetActive(false);
         m_ExitScreen.SetActive(true);
         Application.Quit();
