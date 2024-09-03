@@ -209,7 +209,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 95985edabc3a1144e8b275dc9d0441c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -356,18 +356,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Options: {fileID: 0}
   m_PauseMenuUI: {fileID: 0}
-  playerPos: {fileID: 6448578349335810656}
+  player: {fileID: 32978715099678022}
   Hook: {fileID: 5210610230318987702, guid: af6fc6f9078e91549b4313cfb43d7bd8, type: 3}
-  playerRB: {fileID: 3348099997004704073}
   mainCam: {fileID: 8650470508965241051}
   _lineRender: {fileID: 4294492541779374164}
   joint: {fileID: 2454663769420908977}
+  moveingJoint: {fileID: 0}
   RopeMaxLength: 10
   ropeSpeed: 5
   hookSpeed: 2
   _grappableEnviorment:
     serializedVersion: 2
     m_Bits: 64
+  hooks: []
 --- !u!232 &2454663769420908977
 DistanceJoint2D:
   m_ObjectHideFlags: 0

@@ -7,19 +7,20 @@ public class GrappleHook : MonoBehaviour
 
     public GameObject m_Options;
     public GameObject m_PauseMenuUI;
-    public Transform playerPos;
+    public GameObject player;
     public GameObject Hook;
     private GameObject _Hook, currentOb, newOb;
-    public Rigidbody2D playerRB;
     public Camera mainCam;
     public LineRenderer _lineRender;
     public DistanceJoint2D joint;
+    private DistanceJoint2D moveingJoint;
     public float RopeMaxLength = 10f;
     public float ropeSpeed = 5f;
     public float hookSpeed;
 
     public LayerMask _grappableEnviorment;
     private Vector2 mousePos, currentAnchor;
+    private string obTag;
     private GameObject GrabbedObject;
 
     [SerializeField] private Transform[] hooks;
@@ -51,29 +52,41 @@ public class GrappleHook : MonoBehaviour
             mousePos = (Vector2)mainCam.ScreenToWorldPoint(Input.mousePosition);
             Collider2D col = Physics2D.OverlapCircle(mousePos, 0.3f, _grappableEnviorment);
             newOb = col.gameObject;
-            if(newOb != null)
-                currentOb = newOb;
-                currentAnchor = mousePos;
-            //_Hook = Instantiate(Hook, playerPos.position, playerPos.rotation);
+            if(newOb.layer == _grappableEnviorment && newOb != currentOb)
                 if(_Hook) {
-                    Destroy(_Hook);
+                    stopGrapple();
                 }
+                obTag = newOb.tag;
+                currentOb = newOb;
+                currentAnchor = newOb.transform.position;
+            //_Hook = Instantiate(Hook, playerPos.position, playerPos.rotation);
                 startGrapple();
             }
-            if ((Input.GetKeyDown(KeyCode.Mouse1) || Input.GetButtonDown("Jump")) && hooked){
+            if ((Input.GetKeyDown(KeyCode.Mouse1) || (Input.GetButtonDown("Jump") && (obTag != "Object"))) && hooked) {
+                // releace grapple if player right clicks. or jumps on a non grapple object
                 stopGrapple();
             }
 
+            if(obTag == "Object") {
+                moveingJoint.connectedAnchor = (Vector2)transform.position;
+                _Hook.transform.position = currentOb.transform.position;
+            }
 
             if (hooked) {
                 DrawRope();
                 if(Input.GetKey(KeyCode.W)) {
                     if(joint.distance > 1f)
-                        joint.distance = joint.distance - (Time.deltaTime * ropeSpeed);
+                        if(obTag == "Object")
+                            moveingJoint.distance = moveingJoint.distance - (Time.deltaTime * ropeSpeed);
+                        else
+                            joint.distance = joint.distance - (Time.deltaTime * ropeSpeed);
                 }
-                if(Input.GetKey(KeyCode.S)) {
+                if(Input.GetKey(KeyCode.S)) {                
                     if(joint.distance < RopeMaxLength)
-                        joint.distance = joint.distance + (Time.deltaTime * ropeSpeed);
+                        if(obTag == "Object")
+                            moveingJoint.distance = moveingJoint.distance + (Time.deltaTime * ropeSpeed);
+                        else
+                            joint.distance = joint.distance + (Time.deltaTime * ropeSpeed);
                 }
             }
             else {
@@ -90,24 +103,42 @@ public class GrappleHook : MonoBehaviour
     /**/
     private void startGrapple() {
         //joint = playerPos.gameObject.AddComponent<DistanceJoint2D>();
-        joint.autoConfigureConnectedAnchor = false;
-        joint.connectedAnchor = (Vector2)currentOb.transform.position;
+
+        if (obTag == "Object") {
+            moveingJoint = currentOb.AddComponent<DistanceJoint2D>();
+            moveingJoint.autoConfigureConnectedAnchor = false;
+            moveingJoint.anchor = transform.position;
+            moveingJoint.connectedAnchor = (Vector2)transform.position;
+            moveingJoint.connectedBody = player.GetComponent<Rigidbody2D>();
+            moveingJoint.distance = Vector2.Distance(currentAnchor, transform.position);
+
+            moveingJoint.enabled = true;
+        } else {
+            joint.autoConfigureConnectedAnchor = false;
+            joint.connectedAnchor = (Vector2)currentOb.transform.position;
+            joint.distance = Vector2.Distance(currentAnchor, transform.position);
+            joint.enabled = true;
+        }
         _Hook = Instantiate(Hook, (Vector2)currentAnchor, Quaternion.identity);
-        joint.distance = Vector2.Distance(currentAnchor, playerPos.position);
-        joint.enabled = true;
         _lineRender.enabled = true;
         hooked = true;
     }
 
     private void stopGrapple() {
         Destroy(_Hook);
-        joint.enabled = false;
+        if(obTag == "Object") {
+            moveingJoint.enabled = false;
+            Destroy(moveingJoint);
+        }
+        else
+            joint.enabled = false;
+        obTag = "";
         _lineRender.enabled = false;
         hooked = false;
     }
 
     void DrawRope() {
-        _lineRender.SetPosition(0, mousePos);
+        _lineRender.SetPosition(0, currentOb.transform.position);
         _lineRender.SetPosition(1, transform.position);
     }
 
