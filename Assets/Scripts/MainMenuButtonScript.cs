@@ -11,7 +11,11 @@ public class MainMenuButtonScript : MonoBehaviour
     public GameObject m_Options;
 
     public GameObject m_ExitScreen;
+
+    public GameObject m_ContinueButton;
+
     public AudioSource m_BackgroundMusicAudioSource;
+    private bool canExit;
 
     void Start()
     {
@@ -19,6 +23,11 @@ public class MainMenuButtonScript : MonoBehaviour
         {
             m_BackgroundMusicAudioSource.volume = PlayerPrefs.GetFloat("musicVolume");
         }
+        if(PlayerPrefs.HasKey("SaveKey"))
+        {
+            m_ContinueButton.SetActive(true);
+        }
+        canExit = false;
     }
 
     public void StartGame()
@@ -56,6 +65,14 @@ public class MainMenuButtonScript : MonoBehaviour
         // Debug.Log("Exit Pressed");
         m_MainMenuButtonScript.SetActive(false);
         m_ExitScreen.SetActive(true);
-        Application.Quit();
+        canExit = true;
+    }
+
+    void Update()
+    {
+        if (canExit && Input.GetKeyDown(KeyCode.Return))
+        {
+            Application.Quit();
+        }
     }
 }
