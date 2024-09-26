@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d26873020ed863dcd9b1e02d73ff46c0
+guid: 24c66c41cacd339aa99caf40b2835f51
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,70 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SwissUpdatedspritesheet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 144
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2f81f818f69ca1d6db9062a0060e7f7c
-      internalID: 9767756
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SwissUpdatedspritesheet_1
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 144
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e8364e32ffdca58b954dffb4664177c
-      internalID: -1253028907
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SwissUpdatedspritesheet_2
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 144
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 677cff8c4d2cf4b2bbf8fce70e4a0c33
-      internalID: -999547739
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SwissUpdatedspritesheet_3
+      name: Jump_spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -226,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9911235098a2e3052a1ca8257f88b546
-      internalID: 1041287697
+      spriteID: f49db716c0c618dd887f477b69581a1b
+      internalID: -1385349415
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SwissUpdatedspritesheet_4
+      name: Jump_spritesheet_1
       rect:
         serializedVersion: 2
         x: 48
@@ -247,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c33e071f9f5fbb05d9baa345d9d8e9ce
-      internalID: 1924592609
+      spriteID: c438fae099f6898d5bb0048ce1aa0757
+      internalID: 554559034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SwissUpdatedspritesheet_5
+      name: Jump_spritesheet_2
       rect:
         serializedVersion: 2
         x: 96
@@ -268,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13af18a95a0ca151895eff49ff0651c8
-      internalID: 572665759
+      spriteID: f12f7b707d1b84c188c0d94df9c6d442
+      internalID: -950704429
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SwissUpdatedspritesheet_6
+      name: Jump_spritesheet_3
       rect:
         serializedVersion: 2
         x: 0
@@ -289,14 +226,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3350d91947ac0ad5ba44b1b4e6d1869
-      internalID: 1785925754
+      spriteID: 30542dc97499d45caa23e89f0d098e6b
+      internalID: -633390446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SwissUpdatedspritesheet_7
+      name: Jump_spritesheet_4
       rect:
         serializedVersion: 2
         x: 48
@@ -310,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ae235d05a6fad2b9a3e821ae9736893
-      internalID: -2066935653
+      spriteID: 3512c18b6b01231189963a99ce40f3b6
+      internalID: 1067742077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SwissUpdatedspritesheet_8
+      name: Jump_spritesheet_5
       rect:
         serializedVersion: 2
         x: 96
@@ -331,14 +268,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 160743dacb4de38c9b35dee2d3bafd62
-      internalID: -951255959
+      spriteID: 166a0723937b643b0a3ef213d4994a2a
+      internalID: -1494054183
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SwissUpdatedspritesheet_9
+      name: Jump_spritesheet_6
       rect:
         serializedVersion: 2
         x: 0
@@ -352,8 +289,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff066682b7ac3c6118327f251aceaa98
-      internalID: -979511308
+      spriteID: 6d060551a32e9239c93275dda47afbb5
+      internalID: 893295138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3a2f7dcc993b9110b5b2b57b39c193d
+      internalID: -1021623824
       vertices: []
       indices: 
       edges: []
@@ -369,16 +327,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SwissUpdatedspritesheet_0: 9767756
-      SwissUpdatedspritesheet_1: -1253028907
-      SwissUpdatedspritesheet_2: -999547739
-      SwissUpdatedspritesheet_3: 1041287697
-      SwissUpdatedspritesheet_4: 1924592609
-      SwissUpdatedspritesheet_5: 572665759
-      SwissUpdatedspritesheet_6: 1785925754
-      SwissUpdatedspritesheet_7: -2066935653
-      SwissUpdatedspritesheet_8: -951255959
-      SwissUpdatedspritesheet_9: -979511308
+      Jump_spritesheet_0: -1385349415
+      Jump_spritesheet_1: 554559034
+      Jump_spritesheet_2: -950704429
+      Jump_spritesheet_3: -633390446
+      Jump_spritesheet_4: 1067742077
+      Jump_spritesheet_5: -1494054183
+      Jump_spritesheet_6: 893295138
+      Jump_spritesheet_7: -1021623824
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
