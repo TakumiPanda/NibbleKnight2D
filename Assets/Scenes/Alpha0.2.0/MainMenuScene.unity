@@ -1351,7 +1351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &844132946
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2526,6 +2526,7 @@ MonoBehaviour:
   m_MainMenuButtonScript: {fileID: 1355893120}
   m_Options: {fileID: 1728358736}
   m_ExitScreen: {fileID: 1575400370}
+  m_ContinueButton: {fileID: 844132945}
   m_BackgroundMusicAudioSource: {fileID: 166032267}
 --- !u!1 &1365750892
 GameObject:
@@ -2584,7 +2585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Thanks for playing Nibble Knight! '
+  m_text: "Thanks for playing Nibble Knight! \nPress The Enter Key To leave."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3113,7 +3114,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Thanks for playing Nibble Knight! '
+  m_text: "Thanks for playing Nibble Knight! \nPress The Enter Key To leave."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
