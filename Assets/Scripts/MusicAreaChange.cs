@@ -21,19 +21,40 @@ public class MusicAreaChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(m_changeMusic && !isDone)
+        //TODO: check if options volume already set to 0, skip this
+        if(m_changeMusic && !isDone && m_music != m_AudioSource.clip)
         {
+            float currentVolume = m_AudioSource.volume;
+            while(m_AudioSource.volume != 0)
+            {
+                float temp = m_AudioSource.volume;
+                temp -= Time.deltaTime;
+                m_AudioSource.volume = temp;
+            }
             m_AudioSource.Stop();
             m_AudioSource.clip = m_music;
             m_AudioSource.Play();
+            while(m_AudioSource.volume < currentVolume)
+            {
+                float temp = m_AudioSource.volume;
+                temp += Time.deltaTime;
+                m_AudioSource.volume = temp;
+            }
+            if(m_AudioSource.volume > currentVolume)
+            {
+                m_AudioSource.volume = currentVolume;
+            }
             isDone = true;
         }
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Trigger");
-        m_changeMusic = true;
+        if(other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Trigger");
+            m_changeMusic = true;
+        }
     }
 
     void OnCollisionExit2D(Collision2D other)
