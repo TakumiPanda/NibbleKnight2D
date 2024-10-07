@@ -17,7 +17,7 @@ public class NewPlayerMovement : MonoBehaviour
     [SerializeField]private float coyoteCounter;
     [SerializeField]private float wallJumpx;
     [SerializeField]private float wallJumpy;
-    private bool isGrounded;
+    private bool isGrounded = false;
 
     [Header("Layers")]
     [SerializeField]private LayerMask groundLayer;
@@ -29,15 +29,15 @@ public class NewPlayerMovement : MonoBehaviour
 
     [Header("Grapple Hook")]
     public GameObject player;
-    public GameObject Hook;
-    private GameObject _Hook, currentOb, newOb;
+    public GameObject Hook; // refrenced hook
+    private GameObject _Hook, currentOb, newOb; //instiantiated hook to destroy
     public Camera mainCam;
     public LineRenderer _lineRender;
-    public DistanceJoint2D joint;
-    private DistanceJoint2D moveingJoint;
+    public DistanceJoint2D joint; // player to an object
+    private DistanceJoint2D moveingJoint; // object to a player
     public float RopeMaxLength = 10f;
     public float ropeSpeed = 5f;
-    public float hookSpeed;
+    //public float hookSpeed; //when we animate the line, this will be used
 
     public LayerMask _grappableEnviorment;
     private Vector2 mousePos, currentAnchor;
@@ -69,89 +69,91 @@ public class NewPlayerMovement : MonoBehaviour
             transform.localScale = new Vector3 (-1, 1, 1);
         }
 
-        //Jump
+        //if _hook, flip compared to player pos
+
+        // ###############
+        // # Jump Update #
+        // ###############
+
+        //jump
         if (Input.GetKeyDown(KeyCode.Space)) {
-            if(isGrounded && coyoteCounter) 
+            if(isGrounded && (coyoteCounter != 0)) 
                 jump();   
         } 
 
+        //Coyote time
         if(!isGrounded) {
             if(coyoteCounter > 0) 
-            coyoteCounter -= 1;
+            coyoteCounter -= Time.deltaTime;
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0)
-            body.velocity = new Vector2(body.velocity.x, body.velocity.y / 2);
+        //ground colision
+        //if(groundhitbox) { Grounded }
 
-        if (onWall()) {
-            body.gravityScale = 0;
-            body.velocity = Vector2.zero;
-        }
-        else {
-            body.gravityScale = 7;
-            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-
-            if (isGrounded())
-            {
-                coyoteCounter = coyoteTime;
-            }
-            else
-                coyoteCounter-= Time.deltaTime;
-        }
+        //wall jump
+        //if(wall) {wall slide, wall slide animation
+        //  if jump, jump away
+        //} 
 
         // ##################
         // # Grapple Update #
         // ##################
 
+        //Grab
         if (Input.GetKeyDown(KeyCode.Mouse0)) {
             mousePos = (Vector2)mainCam.ScreenToWorldPoint(Input.mousePosition);
             Collider2D col = Physics2D.OverlapCircle(mousePos, 0.3f, _grappableEnviorment);
             newOb = col.gameObject;
-            if(newOb.layer == _grappableEnviorment && newOb != currentOb)
+            if(newOb.layer == _grappableEnviorment && newOb != currentOb) {
                 if(_Hook) {
                     stopGrapple();
                 }
                 obTag = newOb.tag;
                 currentOb = newOb;
                 currentAnchor = newOb.transform.position;
-            //_Hook = Instantiate(Hook, playerPos.position, playerPos.rotation);
+                _Hook = Instantiate(Hook, player.position, player.rotation);
                 startGrapple();
             }
-            if ((Input.GetKeyDown(KeyCode.Mouse1) || (Input.GetButtonDown("Jump") && (obTag != "Object"))) && hooked) {
-                // releace grapple if player right clicks. or jumps on a non grapple object
-                stopGrapple();
-            }
+        }
 
-            if(obTag == "Object") {
-                moveingJoint.connectedAnchor = (Vector2)transform.position;
-                _Hook.transform.position = currentOb.transform.position;
-            }
+        // releace grab
+        if ((Input.GetKeyDown(KeyCode.Mouse1) || (Input.GetButtonDown("Jump") && (obTag != "Object"))) && hooked) {
+            // releace grapple if player right clicks. or jumps on a non grapple object
+            stopGrapple();
+        }
 
-            if (hooked) {
-                DrawRope();
-                if(Input.GetKey(KeyCode.W)) {
-                    if(joint.distance > 1f)
-                        if(obTag == "Object")
-                            moveingJoint.distance = moveingJoint.distance - (Time.deltaTime * ropeSpeed);
-                        else
-                            joint.distance = joint.distance - (Time.deltaTime * ropeSpeed);
-                }
-                if(Input.GetKey(KeyCode.S)) {                
-                    if(joint.distance < RopeMaxLength)
-                        if(obTag == "Object")
-                            moveingJoint.distance = moveingJoint.distance + (Time.deltaTime * ropeSpeed);
-                        else
-                            joint.distance = joint.distance + (Time.deltaTime * ropeSpeed);
-                }
-            }
-            else {
-                Vector2 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-                //RotateGun(mousePos, true);
-            }
+        // grabbing an object
+        if(obTag == "Object") {
+            moveingJoint.connectedAnchor = (Vector2)transform.position;
+            _Hook.transform.position = currentOb.transform.position;
+        }
 
-            if(joint.enabled) {
-                _lineRender.SetPosition(1, transform.position);
+        // draws a rope between you and ob. adjusts length of rope
+        if (hooked) {
+            DrawRope();
+            if(Input.GetKey(KeyCode.W)) {
+                if(joint.distance > 1f)
+                    if(obTag == "Object")
+                        moveingJoint.distance = moveingJoint.distance - (Time.deltaTime * ropeSpeed);
+                    else
+                        joint.distance = joint.distance - (Time.deltaTime * ropeSpeed);
             }
+            if(Input.GetKey(KeyCode.S)) {                
+                if(joint.distance < RopeMaxLength)
+                    if(obTag == "Object")
+                        moveingJoint.distance = moveingJoint.distance + (Time.deltaTime * ropeSpeed);
+                    else
+                        joint.distance = joint.distance + (Time.deltaTime * ropeSpeed);
+            }
+        }
+        else {
+            Vector2 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+            //RotateGun(mousePos, true);
+        }
+        
+        if(joint.enabled) {
+            _lineRender.SetPosition(1, transform.position);
+        }
     }
 
     void LateUpdate() {
@@ -167,11 +169,6 @@ public class NewPlayerMovement : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x, jumpPower);
     }
 
-    private void isGrounded() {
-        //tests if player is on ground.
-        //if player left ground not due to jump, set cyotecounter to time
-    }
-
     // ###########
     // # grapple #
     // ###########
@@ -181,8 +178,8 @@ public class NewPlayerMovement : MonoBehaviour
 
         Debug.Log("Line");
 
-        _lineRender.SetPosition(0, FirePoint.position);
-        _lineRender.SetPosition(1, _grabPoint);
+        _lineRender.SetPosition(0, player.position); //player
+        _lineRender.SetPosition(1, _grabPoint); // object
     }
 
     void startGrapple() {
