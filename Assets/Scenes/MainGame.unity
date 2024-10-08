@@ -727,6 +727,8 @@ MonoBehaviour:
   m_NotEnoughDialog: 
   m_FinishedDialog: 
   m_TalkingDialog: '*Squeak*'
+  m_TalkBubbleUIImage: {fileID: 1508897220}
+  m_TalkingSprite: {fileID: 21300000, guid: df6fc87da6167d90abffb2aeee0eb80a, type: 3}
 --- !u!61 &79636157
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1075,6 +1077,8 @@ MonoBehaviour:
   m_NotEnoughDialog: 
   m_FinishedDialog: 
   m_TalkingDialog: You can save your progress using these fireplaces.
+  m_TalkBubbleUIImage: {fileID: 1508897220}
+  m_TalkingSprite: {fileID: 21300000, guid: adba3470f6219c5ff89ab0cda1c1edbf, type: 3}
 --- !u!61 &84513836
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6924,6 +6928,8 @@ MonoBehaviour:
   m_TalkingDialog: This is the entrance to the cheese vault but there's a dangerous
     mouse staying there. I close off the entrance for everyone's safety. Maybe once
     you get stronger, you can save us from this tyrant.
+  m_TalkBubbleUIImage: {fileID: 1508897220}
+  m_TalkingSprite: {fileID: 21300000, guid: dd4f6d202a115583ca55f606f8b6e73f, type: 3}
 --- !u!61 &198302942
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9018,6 +9024,8 @@ MonoBehaviour:
   m_NotEnoughDialog: 
   m_FinishedDialog: 
   m_TalkingDialog: You ever see that movie about the rat who cooks food real good?
+  m_TalkBubbleUIImage: {fileID: 1508897220}
+  m_TalkingSprite: {fileID: 21300000, guid: df6fc87da6167d90abffb2aeee0eb80a, type: 3}
 --- !u!61 &324740498
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37352,6 +37360,8 @@ MonoBehaviour:
   m_NotEnoughDialog: 
   m_FinishedDialog: 
   m_TalkingDialog: This city, I tell ya.
+  m_TalkBubbleUIImage: {fileID: 1508897220}
+  m_TalkingSprite: {fileID: 21300000, guid: df6fc87da6167d90abffb2aeee0eb80a, type: 3}
 --- !u!61 &1998812121
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45875,6 +45885,8 @@ MonoBehaviour:
   m_FinishedDialog: 
   m_TalkingDialog: Lord Swiss? What are you doing here? Are you going to extort me
     once more?
+  m_TalkBubbleUIImage: {fileID: 1508897220}
+  m_TalkingSprite: {fileID: 21300000, guid: 6fcc286f857e3bedc90ae20bac207496, type: 3}
 --- !u!61 &2110734456
 BoxCollider2D:
   m_ObjectHideFlags: 0

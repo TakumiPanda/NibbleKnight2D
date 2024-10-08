@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class NPCScript : MonoBehaviour
@@ -24,6 +25,10 @@ public class NPCScript : MonoBehaviour
     public string m_FinishedDialog;
 
     public string m_TalkingDialog;
+
+    public Image m_TalkBubbleUIImage;
+
+    public Sprite m_TalkingSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -84,6 +89,7 @@ public class NPCScript : MonoBehaviour
             {
                 m_TextBubble.SetActive(true);
                 m_Text.text = m_TalkingDialog;
+                m_TalkBubbleUIImage.sprite = m_TalkingSprite;
                 return;
             }
         }
