@@ -12,8 +12,7 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
-    private StateManager _normalStateManager;
-    private StateManager _combatStateManager;
+    private StateManager _stateManager;
     private bool _inCombatMode;
 
     private bool _isWalking = false; //TEST CODE!!!!
@@ -21,20 +20,12 @@ public class Boss : Enemy
     private void Start()
     {
         _inCombatMode = false;
-        _normalStateManager = new StateManager(this, false); // Normal mode
-        _combatStateManager = new StateManager(this, true); // Combat mode
+        _stateManager = new StateManager(this);
 
-        // Pre-create states for normal mode
-        _normalStateManager.PrepareStates(new Dictionary<Type, IState>
+        _stateManager.PrepareStates(new Dictionary<Type, IState>
         {
             { typeof(EnemyIdleState), new EnemyIdleState(this) },
             { typeof(EnemyWalkingState), new EnemyWalkingState(this) },
-        });
-
-        // Pre-create states for combat mode
-        _combatStateManager.PrepareStates(new Dictionary<Type, IState>
-        {
-            { typeof(BossWalkingState), new BossWalkingState(this) },
             { typeof(BossRangeAttackState), new BossRangeAttackState(this) },
             { typeof(BossPunchAttackState), new BossPunchAttackState(this) },
             { typeof(BossJumpAttackState), new BossJumpAttackState(this) },
@@ -42,7 +33,7 @@ public class Boss : Enemy
         });
 
         // Start with IdleState in normal mode
-        _normalStateManager.ChangeState<EnemyIdleState>();
+        _stateManager.ChangeState<EnemyIdleState>();
 
         InvokeRepeating("FlipIsWalking", 2f, 2f); //TEST CODE!!!!
     }
@@ -52,19 +43,19 @@ public class Boss : Enemy
         //Debug.Log("Updating");
         if (_inCombatMode)
         {
-            _combatStateManager.UpdateStates();
+            _stateManager.UpdateStates();
 
             // if (/* condition for ranged attack */)
             // {
-            //     _combatStateManager.ChangeState<BossRangeAttackState>();
+            //     _stateManager.ChangeState<BossRangeAttackState>();
             // }
         }
         else
         {
-            _normalStateManager.UpdateStates();
+            _stateManager.UpdateStates();
 
-            if(_isWalking) _normalStateManager.ChangeState<EnemyWalkingState>(); //TEST CODE!!!!
-            else _normalStateManager.ChangeState<EnemyIdleState>(); //TEST CODE!!!!
+            if(_isWalking) _stateManager.ChangeState<EnemyWalkingState>(); //TEST CODE!!!!
+            else _stateManager.ChangeState<EnemyIdleState>(); //TEST CODE!!!!
         }
     }
 
@@ -72,19 +63,5 @@ public class Boss : Enemy
     private void FlipIsWalking()
     {
         _isWalking = !_isWalking;
-    }
-
-    public void SwitchToCombatMode()
-    {
-        _inCombatMode = true;
-        // Optionally reset combat state manager
-        _combatStateManager.ChangeState<BossWalkingState>();
-    }
-
-    public void SwitchToNormalMode()
-    {
-        _inCombatMode = false;
-        // Optionally reset normal state manager
-        _normalStateManager.ChangeState<EnemyIdleState>();
     }
 }

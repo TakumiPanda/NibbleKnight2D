@@ -1,6 +1,6 @@
-public class BossPunchAttackState: BossCombatState
+public class BossPunchAttackState: BaseState
 {
-    public BossPunchAttackState(Boss boss): base(boss) {}
+    public BossPunchAttackState(Enemy boss): base(boss) {}
 
     public override void Enter()
     {

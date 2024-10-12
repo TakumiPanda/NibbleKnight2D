@@ -7,7 +7,7 @@ public class StateManager
     private IState _currentState;
     private Dictionary<Type, IState> _stateInstances = new();
 
-    public StateManager(Enemy entity, bool isCombatMode)
+    public StateManager(Enemy entity)
     {
         // Constructor logic if needed
     }
