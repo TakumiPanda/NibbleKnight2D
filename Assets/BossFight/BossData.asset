@@ -17,4 +17,4 @@ MonoBehaviour:
   _maxPower: 0
   _maxRage: 0
   _defaultState: 0
-  _speed: 5
+  _maxSpeed: 2

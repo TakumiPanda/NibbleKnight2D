@@ -12,15 +12,14 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
-    private StateManager _stateManager;
+    [SerializeField] BoxCollider2D _boxFightZone;
+    
     private bool _inCombatMode;
 
-    private bool _isWalking = false; //TEST CODE!!!!
-
-    private void Start()
+    private new void Start()
     {
+        base.Start();
         _inCombatMode = false;
-        _stateManager = new StateManager(this);
 
         _stateManager.PrepareStates(new Dictionary<Type, IState>
         {
@@ -34,12 +33,16 @@ public class Boss : Enemy
 
         // Start with IdleState in normal mode
         _stateManager.ChangeState<EnemyIdleState>();
-
-        InvokeRepeating("FlipIsWalking", 2f, 2f); //TEST CODE!!!!
     }
 
-    private void Update()
+    private new void Update()
     {
+        base.Update();
+        // if(_moveCoroutine == null)
+        // {
+        //     StartCoroutine(Move());
+        // }
+
         //Debug.Log("Updating");
         if (_inCombatMode)
         {
@@ -54,14 +57,8 @@ public class Boss : Enemy
         {
             _stateManager.UpdateStates();
 
-            if(_isWalking) _stateManager.ChangeState<EnemyWalkingState>(); //TEST CODE!!!!
-            else _stateManager.ChangeState<EnemyIdleState>(); //TEST CODE!!!!
+            if(_enumEnemyState == EnumEnemyState.Patrol) _stateManager.ChangeState<EnemyWalkingState>(); 
+            else if(_enumEnemyState == EnumEnemyState.Idle) _stateManager.ChangeState<EnemyIdleState>();
         }
-    }
-
-    //TEST FUNCTION!!!!
-    private void FlipIsWalking()
-    {
-        _isWalking = !_isWalking;
     }
 }
