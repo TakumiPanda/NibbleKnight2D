@@ -6,13 +6,20 @@ public class EnemyIdleState: BaseState
 
     public override void Enter()
     {
+        Debug.Log("Enters Idle");
+        _stateDuration = 1.5f;
         _entity.GetComponentInChildren<Animator>().SetBool("isIdle", true);
-        // Idle state enter logic
     }
 
     public override void UpdateState()
     {
         // Idle State update logic
+        _stateDuration -= Time.deltaTime;
+        if(_stateDuration <= 0)
+        {
+            _stateDuration = 1.5f;
+            _entity.CurrEnemyState = EnumEnemyState.Walk;
+        }
     }
 
     public override void Exit()

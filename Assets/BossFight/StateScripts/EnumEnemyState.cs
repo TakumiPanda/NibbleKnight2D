@@ -1,7 +1,7 @@
 public enum EnumEnemyState
 {
     Idle,
-    Patrol,
+    Walk,
     Combat,
     Die,
     TakeDamage

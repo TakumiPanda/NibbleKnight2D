@@ -1,78 +1,68 @@
-using System.Collections;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected Transform[] _patrolPoints;
-    protected int _currPatrolPointIndex = -1;
+    // Data variables
+    public Transform[] PatrolPoints;
+    public EnemyDataSO EnemyData;
     
+    // State Management variables
     protected StateManager _stateManager;
 
-    [SerializeField] private EnemyDataSO _enemyData;
-    [SerializeField] protected EnumEnemyState _enumEnemyState;
+    // Runtime state variables
+    public EnumEnemyState CurrEnemyState {get; set;}
 
-    private Coroutine patrolCoroutine;
-
+    [SerializeField] protected int _currHealth;
+    
     protected void Start()
     {
         _stateManager = new(this);
-        _enumEnemyState = EnumEnemyState.Idle;
-        foreach(Transform p in _patrolPoints)
+        _currHealth = EnemyData.MaxHealth;
+
+        CurrEnemyState = EnumEnemyState.Idle;        
+        _stateManager.PrepareStates(new Dictionary<Type, IState>
         {
-            p.SetParent(null);
-        }    
-        if(_patrolPoints.Length > 0) _currPatrolPointIndex = 0;
-    }
-    // protected virtual void Awake()
-    // {
-    //     stateManager = new();
-    //     IdleState idleState = new(this);
-    //     stateManager.ChangeState(idleState);
-    // }
-
-    private IEnumerator Patrol()
-    {
-        _enumEnemyState = EnumEnemyState.Patrol;
-        Rigidbody2D rb2d = GetComponent<Rigidbody2D>();
-
-        int targetPatrolPointIndex = (_currPatrolPointIndex + 1) % _patrolPoints.Length;
-        Vector2 targetPatrolPos = _patrolPoints[targetPatrolPointIndex].position; 
-
-        float dist;
-        
-        while(true)
-        {
-            dist = Vector2.Distance(transform.position, _patrolPoints[targetPatrolPointIndex].position);
-            Vector2 dir = (targetPatrolPos - rb2d.position).normalized;
-
-            rb2d.MovePosition(rb2d.position + _enemyData.MaxSpeed * Time.fixedDeltaTime * dir);
-            
-            if(dist <= 0.1f)
-            {
-                rb2d.position = targetPatrolPos;
-                break;
-            }
-
-            yield return new WaitForFixedUpdate();
-        }
-        
-        _enumEnemyState = EnumEnemyState.Idle;
-        yield return new WaitForSeconds(1.5f);
-
-        _currPatrolPointIndex = targetPatrolPointIndex;
-        patrolCoroutine = null;
+            { typeof(EnemyIdleState), new EnemyIdleState(this) },
+            { typeof(EnemyWalkingState), new EnemyWalkingState(this) }
+        });
     }
 
     protected void Update()
     {
-        if(patrolCoroutine == null && _enumEnemyState == EnumEnemyState.Idle)
+        if(_currHealth <= 0) 
         {
-            patrolCoroutine = StartCoroutine(Patrol());
-        }    
+            SendMessageUpwards("EndBossFight");
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            if (CurrEnemyState == EnumEnemyState.Walk)
+            {
+                _stateManager.ChangeState<EnemyWalkingState>();
+            }
+            else if (CurrEnemyState == EnumEnemyState.Idle)
+            {
+                _stateManager.ChangeState<EnemyIdleState>();
+            }
+
+            // Update State Associated Actions
+            UpdateStateManager();
+        }
     }
 
     protected virtual void UpdateStateManager()
     {
         _stateManager.UpdateStates();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            _currHealth = Math.Clamp(--_currHealth, 0, EnemyData.MaxHealth);
+            SendMessageUpwards("UpdateHealthBar", _currHealth);
+        }    
     }
 }

@@ -10,21 +10,26 @@ using UnityEngine;
 //     JumpAttackMode
 //     MeeleAttackMode
 
+public enum BossCombatState
+{
+    Off,
+    HissyFit,
+    PunchAttack,
+    RangeAttack,
+    JumpAttack
+}
+
 public class Boss : Enemy
 {
     [SerializeField] BoxCollider2D _boxFightZone;
-    
-    private bool _inCombatMode;
+    public BossCombatState CombatState { get; set; }
 
     private new void Start()
     {
         base.Start();
-        _inCombatMode = false;
 
         _stateManager.PrepareStates(new Dictionary<Type, IState>
         {
-            { typeof(EnemyIdleState), new EnemyIdleState(this) },
-            { typeof(EnemyWalkingState), new EnemyWalkingState(this) },
             { typeof(BossRangeAttackState), new BossRangeAttackState(this) },
             { typeof(BossPunchAttackState), new BossPunchAttackState(this) },
             { typeof(BossJumpAttackState), new BossJumpAttackState(this) },
@@ -37,28 +42,22 @@ public class Boss : Enemy
 
     private new void Update()
     {
-        base.Update();
-        // if(_moveCoroutine == null)
-        // {
-        //     StartCoroutine(Move());
-        // }
-
-        //Debug.Log("Updating");
-        if (_inCombatMode)
+        if(_currHealth <= 0) 
         {
-            _stateManager.UpdateStates();
-
-            // if (/* condition for ranged attack */)
-            // {
-            //     _stateManager.ChangeState<BossRangeAttackState>();
-            // }
+            SendMessageUpwards("EndBossFight");
+            gameObject.SetActive(false);
         }
         else
         {
-            _stateManager.UpdateStates();
-
-            if(_enumEnemyState == EnumEnemyState.Patrol) _stateManager.ChangeState<EnemyWalkingState>(); 
-            else if(_enumEnemyState == EnumEnemyState.Idle) _stateManager.ChangeState<EnemyIdleState>();
+            if (CurrEnemyState == EnumEnemyState.Combat)
+            {
+                _stateManager.ChangeState<EnemyWalkingState>();
+                _stateManager.UpdateStates();
+            }
+            else
+            {
+                base.Update(); // behave like a normal enemy when not in combat mode
+            }
         }
     }
 }

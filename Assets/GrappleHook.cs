@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GrappleHook : MonoBehaviour
+public partial class GrappleHook : MonoBehaviour
 {
-
     public GameObject m_Options;
     public GameObject m_PauseMenuUI;
     public GameObject player;
@@ -88,6 +85,7 @@ public class GrappleHook : MonoBehaviour
                         else
                             joint.distance = joint.distance + (Time.deltaTime * ropeSpeed);
                 }
+                TryDropItem();
             }
             else {
                 Vector2 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
