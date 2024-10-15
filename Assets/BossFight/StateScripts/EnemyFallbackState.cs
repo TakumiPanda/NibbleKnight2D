@@ -1,19 +1,18 @@
-public class BossPunchAttackState: BossCombatState
+using UnityEngine;
+
+public class EnemyFallbackState: BaseState
 {
-    public BossPunchAttackState(Boss boss): base(boss) {}
+    public EnemyFallbackState(Enemy entity): base(entity){}
 
     public override void Enter()
     {
-    
     }
 
     public override void UpdateState()
     {
-    
     }
 
     public override void Exit()
     {
-    
     }
-}   
+}

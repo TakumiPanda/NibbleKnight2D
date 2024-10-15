@@ -24,9 +24,12 @@ public class Enemy : MonoBehaviour
         CurrEnemyState = EnumEnemyState.Idle;        
         _stateManager.PrepareStates(new Dictionary<Type, IState>
         {
+            { typeof(EnemyFallbackState), new EnemyFallbackState(this) },
             { typeof(EnemyIdleState), new EnemyIdleState(this) },
             { typeof(EnemyWalkingState), new EnemyWalkingState(this) }
         });
+        
+        _stateManager.ChangeState<EnemyIdleState>();
     }
 
     protected void Update()
@@ -46,6 +49,10 @@ public class Enemy : MonoBehaviour
             {
                 _stateManager.ChangeState<EnemyIdleState>();
             }
+            else
+            {
+                _stateManager.ChangeState<EnemyFallbackState>();
+            }
 
             // Update State Associated Actions
             UpdateStateManager();
@@ -57,12 +64,18 @@ public class Enemy : MonoBehaviour
         _stateManager.UpdateStates();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    protected virtual void OnCollisionEnter2D(Collision2D other) // Default for all enemies
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            _currHealth = Math.Clamp(--_currHealth, 0, EnemyData.MaxHealth);
-            SendMessageUpwards("UpdateHealthBar", _currHealth);
+            // Player damage code is buggy, this won't work properly until the player damage is handled properly
+            other.gameObject.GetComponent<SwissHealthScript>().SwissDamaged(0.1f);
         }    
+    }
+
+    public void DamageEnemy(int damage)
+    {
+        _currHealth = Math.Clamp((_currHealth-=damage), 0, EnemyData.MaxHealth);
+        SendMessageUpwards("UpdateHealthBar", _currHealth);
     }
 }

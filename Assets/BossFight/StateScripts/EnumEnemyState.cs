@@ -1,8 +1,8 @@
 public enum EnumEnemyState
 {
+    FallbackState,
     Idle,
     Walk,
-    Combat,
     Die,
     TakeDamage
 }

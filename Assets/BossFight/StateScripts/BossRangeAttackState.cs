@@ -1,6 +1,6 @@
-public class BossRangeAttackState: BaseState
+public class BossRangeAttackState: BossCombatState
 {
-    public BossRangeAttackState(Enemy boss): base(boss) {}
+    public BossRangeAttackState(Boss boss): base(boss) {}
 
     public override void Enter()
     {

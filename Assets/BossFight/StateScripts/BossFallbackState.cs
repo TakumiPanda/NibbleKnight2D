@@ -1,6 +1,6 @@
-public class BossJumpAttackState: BossCombatState
+public class BossFallbackState: BossCombatState
 {
-    public BossJumpAttackState(Boss boss): base(boss) {}
+    public BossFallbackState(Boss boss): base(boss) {}
 
     public override void Enter()
     {}

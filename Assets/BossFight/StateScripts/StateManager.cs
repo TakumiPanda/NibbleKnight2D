@@ -19,7 +19,6 @@ public class StateManager
         {
             _stateInstances[state.Key] = state.Value;
         }
-        _currentState = _stateInstances[typeof(EnemyIdleState)];
     }
 
     public void ChangeState<T>() where T : IState
@@ -42,6 +41,7 @@ public class StateManager
 
     public void UpdateStates()
     {
+        //Debug.Log(_currentState.GetType());
         _currentState?.UpdateState();
     }
 }

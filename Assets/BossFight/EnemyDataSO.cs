@@ -7,8 +7,8 @@ public class EnemyDataSO : ScriptableObject
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _maxPower;
     [SerializeField] private int _maxRage;
-    [SerializeField] private EnumEnemyState _defaultState;
     [SerializeField] private int _maxSpeed;
+    [SerializeField] private EnumEnemyState _defaultState;
 
     public string Name => _name;
     public EnumEnemyState DefaultState => _defaultState;

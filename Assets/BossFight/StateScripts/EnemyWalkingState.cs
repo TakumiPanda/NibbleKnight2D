@@ -27,11 +27,12 @@ public class EnemyWalkingState: BaseState
 
     public override void UpdateState()
     {
-        if(isBoss && _entity.CurrEnemyState == EnumEnemyState.Combat)
+        if(isBoss && (_entity as Boss).IsInCombat) //Combat Mode
         {
+            _entity.GetComponentInChildren<Animator>().SetBool("isWalking", true);
             MoveTowardsPlayer();
         }
-        else MoveTowardsPatrolPoint();
+        else MoveTowardsPatrolPoint(); //Regular Mode
     }
 
     public override void Exit()
@@ -61,17 +62,13 @@ public class EnemyWalkingState: BaseState
     {
         Vector2 targetPos = new(_playerRb2d.position.x, _enemyRb2d.position.y);
         float dist = Vector2.Distance(_enemyRb2d.position, targetPos);
-        if (dist <= 5f) return;
-        
+        if (dist <= 3f) 
+        {
+            return;
+        }
         Vector2 dir = (targetPos - _enemyRb2d.position).normalized;
 
         // Move the enemy (Added a 3x speed multiplier for Combat mode)
         _enemyRb2d.MovePosition(_enemyRb2d.position + _entity.EnemyData.MaxSpeed * 3f * Time.fixedDeltaTime * dir);
-
-        if (dist <= 2f)
-        {
-            (_entity as Boss).CombatState = BossCombatState.PunchAttack;
-            Debug.Log("Punching the shite outta that lil rat");
-        }
     }
 }
