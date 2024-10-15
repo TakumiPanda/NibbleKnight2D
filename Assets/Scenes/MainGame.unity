@@ -17996,7 +17996,7 @@ Transform:
   m_GameObject: {fileID: 651458793}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.1, y: 12.204, z: -1}
+  m_LocalPosition: {x: 28.1, y: 12.22, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18883,7 +18883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &841403520
 Animator:
   serializedVersion: 5
@@ -46118,7 +46118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6448578349265554680}
-  aheadDistance: 3
+  xOffset: 0
+  yOffset: 0
   cameraSpeed: 1
 --- !u!81 &845241494301566771
 AudioListener:
