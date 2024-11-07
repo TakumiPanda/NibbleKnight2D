@@ -46,16 +46,17 @@ public partial class GrappleHook : MonoBehaviour
             //}
 
             if (Input.GetKeyDown(KeyCode.Mouse0)) {
-            mousePos = (Vector2)mainCam.ScreenToWorldPoint(Input.mousePosition);
-            Collider2D col = Physics2D.OverlapCircle(mousePos, 0.3f, _grappableEnviorment);
-            newOb = col.gameObject;
-            if(newOb.layer == _grappableEnviorment && newOb != currentOb)
-                if(_Hook) {
-                    stopGrapple();
-                }
-                obTag = newOb.tag;
-                currentOb = newOb;
-                currentAnchor = newOb.transform.position;
+                mousePos = (Vector2)mainCam.ScreenToWorldPoint(Input.mousePosition);
+                Collider2D col = Physics2D.OverlapCircle(mousePos, 0.3f, _grappableEnviorment);
+                newOb = col.gameObject;
+                if(newOb.layer == _grappableEnviorment && newOb != currentOb) 
+                    if(_Hook) {
+                        stopGrapple();
+                    }
+                    obTag = newOb.tag;
+                    currentOb = newOb;
+                    currentAnchor = newOb.transform.position;
+                
             //_Hook = Instantiate(Hook, playerPos.position, playerPos.rotation);
                 startGrapple();
             }
